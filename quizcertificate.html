@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Certificate</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .certificate-container {
+            width: 70%;
+            max-width: 800px;
+            padding: 40px;
+            background: #fff;
+            border: 10px solid #4CAF50;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .certificate-container h1 {
+            font-size: 40px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .certificate-container p {
+            font-size: 20px;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .certificate-container .name {
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .certificate-container .quiz-title {
+            font-size: 24px;
+            color: #4CAF50;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+        .certificate-container .completion-text {
+            font-size: 22px;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .certificate-container .signature {
+            margin-top: 40px;
+            font-size: 18px;
+            font-style: italic;
+            color: #4CAF50;
+        }
+
+        .print-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        .print-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="certificate-container">
+    <h1>Certificate of Completion</h1>
+    <p>This is to certify that</p>
+    <p class="name" id="userName">[User Name]</p>
+    <p>has successfully completed the quiz titled</p>
+    <p class="quiz-title">QuantumBot Quiz</p>
+    <p class="completion-text">Date of Completion: <span id="completionDate">[Date]</span></p>
+    
+    <button class="print-btn" onclick="window.print()">Print Certificate</button>
+</div>
+
+<script>
+    // Add dynamic functionality to fill the name and date
+    document.getElementById('userName').textContent = "__________________________";  // Replace with user's name dynamically if needed
+    document.getElementById('completionDate').textContent = new Date().toLocaleDateString();  // Dynamic date
+</script>
+<button onclick="window.location.href='socialmedia.html'">Share to socials!</button>
+</body>
+</html>

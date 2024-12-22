@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Reader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="reader-container">
+        <input type="file" id="file-input" accept=".epub" />
+        <div id="reader"></div>
+    </div>
+    <!-- Add JSZip before epub.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.3.87/epub.min.js"></script>
+
+    <!-- ePub.js should load before app.js -->
+<script src="epub.min.js"></script>
+<script src="app.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.3.87/epub.min.js"></script>
+    <script src="app.js"></script>
+    <h1>Download your first medical book for free!</h1>
+    <a href="https://drive.google.com/file/d/1nG1V3J43soG0vWholAL2aegb6OBq6ze_/view?usp=sharing" target="_blank" >
+        <button class="download-btn">Download EPUB File</button>
+    </a>
+    
+    </a>
+</body>
+</html>

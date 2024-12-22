@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Share Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .result-container {
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .result-container h1 {
+            color: #333;
+        }
+
+        .share-btns {
+            margin-top: 30px;
+        }
+
+        .share-btns button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .share-btns button:hover {
+            background-color: #45a049;
+        }
+
+        .share-btns button:active {
+            background-color: #3e8e41;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="result-container">
+    <h1>You've Completed the Quiz!</h1>
+    <p>Score: 3/3</p> <!-- This score will be dynamically updated after the quiz -->
+    <p>Congratulations on your achievement!</p>
+    
+    <div class="share-btns">
+        <button onclick="shareOnFacebook()">Share on Facebook</button>
+        <button onclick="shareOnTwitter()">Share on Twitter</button>
+        <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+    </div>
+</div>
+
+<script>
+    // Replace with actual dynamic score and user name after quiz submission
+    const userName = "John Doe";  // This should be dynamically set based on the user
+    const userScore = 3;  // This should be dynamically set after quiz completion
+
+    // Social media sharing functions
+    function shareOnFacebook() {
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=I%20scored%20${userScore}%20out%20of%203%20in%20the%20QuantumBot%20Quiz!%20Take%20the%20quiz%20at%20${encodeURIComponent(window.location.href)}`;
+        window.open(facebookUrl, '_blank', 'width=600,height=400');
+    }
+
+    function shareOnTwitter() {
+        const twitterUrl = `https://twitter.com/intent/tweet?text=I%20scored%20${userScore}%20out%20of%203%20in%20the%20QuantumBot%20Quiz!%20Take%20the%20quiz%20and%20see%20how%20you%20do.%20${encodeURIComponent(window.location.href)}`;
+        window.open(twitterUrl, '_blank', 'width=600,height=400');
+    }
+
+    function shareOnWhatsApp() {
+        const whatsappUrl = `https://api.whatsapp.com/send?text=I%20scored%20${userScore}%20out%20of%203%20in%20the%20QuantumBot%20Quiz!%20Try%20it%20yourself%20at%20${encodeURIComponent(window.location.href)}`;
+        window.open(whatsappUrl, '_blank', 'width=600,height=400');
+    }
+</script>
+
+</body>
+</html>

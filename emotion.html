@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotional Check-Up</title>
+  <link rel="stylesheet" href="emotion.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Emotional Check-Up</h1>
+    <p>Select how you're feeling today:</p>
+    
+    <div class="emotions">
+      <button onclick="checkEmotion('happy')">😊 Happy</button>
+      <button onclick="checkEmotion('sad')">😢 Sad</button>
+      <button onclick="checkEmotion('anxious')">😰 Anxious</button>
+      <button onclick="checkEmotion('angry')">😡 Angry</button>
+      <button onclick="checkEmotion('tired')">😴 Tired</button>
+    </div>
+
+    <div id="response" class="response"></div>
+  </div>
+  <button onclick="window.location = 'index.html'">Back to website</button>
+  
+
+  <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+projectKey=QuantumBot
+serverUrl=http://localhost:9000
+serverVersion=24.12.0.100206
+dashboardUrl=http://localhost:9000/dashboard?id=QuantumBot
+ceTaskId=6bf0d82b-4d90-47c2-baa7-faa920bac1bc
+ceTaskUrl=http://localhost:9000/api/ce/task?id=6bf0d82b-4d90-47c2-baa7-faa920bac1bc

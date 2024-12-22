@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumBot Quiz - Leaderboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .quiz-container {
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-container h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .answers {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .answers li {
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .answers li:hover {
+            background-color: #ddd;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .leaderboard {
+            margin-top: 40px;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .leaderboard table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .leaderboard th, .leaderboard td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .leaderboard th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .leaderboard td {
+            background-color: #f9f9f9;
+        }
+
+        .leaderboard td:hover {
+            background-color: #f1f1f1;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>QuantumBot Quiz</h1>
+    <form id="quizForm">
+        <div class="question">
+            <p>1. What is the capital of France?</p>
+            <ul class="answers">
+                <li><input type="radio" name="q1" value="A"> A. Berlin</li>
+                <li><input type="radio" name="q1" value="B"> B. Paris</li>
+                <li><input type="radio" name="q1" value="C"> C. Madrid</li>
+                <li><input type="radio" name="q1" value="D"> D. Rome</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <p>2. What is 5 + 3?</p>
+            <ul class="answers">
+                <li><input type="radio" name="q2" value="A"> A. 10</li>
+                <li><input type="radio" name="q2" value="B"> B. 8</li>
+                <li><input type="radio" name="q2" value="C"> C. 7</li>
+                <li><input type="radio" name="q2" value="D"> D. 5</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <p>3. Which programming language is used for web development?</p>
+            <ul class="answers">
+                <li><input type="radio" name="q3" value="A"> A. Python</li>
+                <li><input type="radio" name="q3" value="B"> B. JavaScript</li>
+                <li><input type="radio" name="q3" value="C"> C. C++</li>
+                <li><input type="radio" name="q3" value="D"> D. Java</li>
+            </ul>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="checkAnswers()">Submit</button>
+    </form>
+</div>
+
+<div class="leaderboard" id="leaderboard">
+    <h2>Leaderboard</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboardTable">
+            <!-- Leaderboard data will be populated here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const answers = {
+        q1: 'B',
+        q2: 'B',
+        q3: 'B'
+    };
+
+    // Function to check answers and update the leaderboard
+    function checkAnswers() {
+        const form = document.getElementById('quizForm');
+        let score = 0;
+
+        // Check answers
+        for (let i = 1; i <= 3; i++) {
+            const question = form[`q${i}`];
+            if (question) {
+                for (let j = 0; j < question.length; j++) {
+                    if (question[j].checked && question[j].value === answers[`q${i}`]) {
+                        score++;
+                    }
+                }
+            }
+        }
+        window.location = "quizcertificate.html"
+
+        // Prompt for name
+        const name = prompt('Enter your name:');
+        if (name) {
+            // Store user data in localStorage
+            let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+            leaderboard.push({ name: name, score: score });
+            leaderboard.sort((a, b) => b.score - a.score);  // Sort leaderboard by score
+
+            // Store sorted leaderboard
+            localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+
+            // Update leaderboard display
+            displayLeaderboard();
+        }
+    }
+
+    // Function to display the leaderboard
+    function displayLeaderboard() {
+        const leaderboardTable = document.getElementById('leaderboardTable');
+        const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+        leaderboardTable.innerHTML = ''; // Clear previous leaderboard
+
+        leaderboard.slice(0, 5).forEach((user, index) => {  // Display top 5 users
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${index + 1}</td><td>${user.name}</td><td>${user.score}</td>`;
+            leaderboardTable.appendChild(row);
+        });
+    }
+
+    // Display leaderboard on page load
+    window.onload = function() {
+        displayLeaderboard();
+
+    };
+
+</script>
+
+</body>
+</html>

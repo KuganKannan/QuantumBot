@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Certificate Generator with Image</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         text-align: center;
+         margin-top: 20px;
+      }
+      #certificateCanvas {
+         border: 10px solid #003366;
+         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      }
+      .container {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+      #nameInput, #courseInput {
+         margin: 10px;
+         padding: 10px;
+         font-size: 16px;
+      }
+   </style>
+</head>
+<body>
+
+<div class="container">
+   <h1>Generate Your Certificate</h1>
+   <input type="text" id="nameInput" placeholder="Enter your name" />
+   <input type="text" id="courseInput" placeholder="Enter course name" />
+   <button onclick="generateCertificate()">Generate Certificate</button>
+   <br><br>
+   <canvas id="certificateCanvas" width="800" height="600"></canvas>
+   <br>
+   <a id="downloadLink" download="certificate.png">Download Certificate</a>
+</div>
+
+<script>
+   function generateCertificate() {
+      const canvas = document.getElementById('certificateCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Clear the canvas for each new certificate generation
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background color
+      ctx.fillStyle = "#f5f5f5";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Border design
+      ctx.strokeStyle = "#003366";
+      ctx.lineWidth = 10;
+      ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+      // Load and draw the image (e.g., logo at the top)
+      const img = new Image();
+      img.src = 'logo.png'; // Path to the image file
+      img.onload = function() {
+         // Draw image at a specific location on the canvas
+         ctx.drawImage(img, canvas.width / 2 - 50, 30, 100, 100); // Centered at top
+
+         // Certificate Title
+         ctx.font = "36px Georgia";
+         ctx.fillStyle = "#003366";
+         ctx.textAlign = "center";
+         ctx.fillText("Certificate of Achievement", canvas.width / 2, 180);
+
+         // Subtitle
+         ctx.font = "24px Arial";
+         ctx.fillStyle = "#000000";
+         ctx.fillText("This certifies that", canvas.width / 2, 230);
+
+         // User's Name
+         const name = document.getElementById('nameInput').value;
+         ctx.font = "28px Georgia";
+         ctx.fillStyle = "#007acc";
+         ctx.fillText(name, canvas.width / 2, 280);
+
+         // Course Name and Completion Text
+         const course = document.getElementById('courseInput').value;
+         ctx.font = "20px Arial";
+         ctx.fillStyle = "#000000";
+         ctx.fillText("has successfully completed the", canvas.width / 2, 330);
+         ctx.fillText(course, canvas.width / 2, 370);
+
+         // Date and Signature
+         ctx.font = "18px Arial";
+         ctx.fillStyle = "#555555";
+         ctx.textAlign = "left";
+       
+
+         ctx.textAlign = "right";
+         ctx.fillText("Signature", canvas.width - 50, canvas.height - 100);
+
+         // Update download link with the generated image
+         const downloadLink = document.getElementById('downloadLink');
+         downloadLink.href = canvas.toDataURL('image/png');
+      };
+   }
+</script>
+
+</body>
+</html>

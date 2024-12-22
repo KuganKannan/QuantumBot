@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign-In</title>
+
+    <!-- Google Sign-In Script -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #g_id_onload {
+            display: none;
+        }
+
+        .g_id_signin {
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Sign In with Google</h1>
+
+    <!-- Google Sign-In Button -->
+    <div id="g_id_onload"
+         data-client_id="92982493368-9ijiirpsett5urb3167cqh2ssp572voi.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+
+    <script>
+        function handleCredentialResponse(response) {
+            const jwt = response.credential;
+            const userInfo = parseJwt(jwt);
+
+            console.log("User Info:", userInfo);
+            alert(`Welcome, ${userInfo.name}!`);
+            
+            // Store user info in localStorage
+            localStorage.setItem('userName', userInfo.name);
+            localStorage.setItem('userPicture', userInfo.picture);
+
+            // Redirect to another page after successful login
+            window.location.href = "index.html";  // Change the URL as per your requirement
+        }
+
+        // Helper function to parse the JWT token
+        function parseJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(
+                atob(base64)
+                    .split('')
+                    .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                    .join('')
+            );
+
+            return JSON.parse(jsonPayload);
+        }
+    </script>
+
+</body>
+</html>
+
+  

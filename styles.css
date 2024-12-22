@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;  /* Light pastel blue background */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Vibrant container for the reader */
+#reader-container {
+    background: linear-gradient(135deg, #ff7b7b, #ff57b0); /* Gradient with pink tones */
+    border-radius: 12px;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* File input style with vibrant colors */
+#file-input {
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #ff66cc;  /* Bold pink background */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#file-input:hover {
+    background-color: #ff3385;  /* Darker shade of pink on hover */
+}
+
+/* Reader container style with a soft pastel background */
+#reader {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+    background-color: #fff;  /* Clean white background for the content */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional style for smooth transitions and soft corners */
+#reader-container, #file-input {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#reader-container:hover, #file-input:hover {
+    transform: translateY(-4px);  /* Slightly lift the elements on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional Button Style (if you decide to add buttons later) */
+button {
+    background-color: #ff7b7b;  /* Light pink background */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff3385;  /* Darker pink when hovered */
+    transform: scale(1.05);  /* Slightly enlarge the button on hover */
+}
